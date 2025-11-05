@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro TV Remote</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="tv">
+            <div class="tv-body">
+                <!-- Decorative elements -->
+                <div class="tv-knob knob-1"></div>
+                <div class="tv-knob knob-2"></div>
+                <div class="tv-vent"></div>
+
+                <!-- Screen area -->
+                <div class="screen-container">
+                    <canvas id="screen" width="600" height="400"></canvas>
+                    <div class="scanlines"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="remote">
+            <div class="remote-body">
+                <button id="power" class="power-button"></button>
+            </div>
+        </div>
+
+        <p id="caption">Click the button to turn on the TV</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
