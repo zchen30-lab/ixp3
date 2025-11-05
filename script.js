@@ -17,8 +17,8 @@ let boxers = {
 };
 
 let moviePerson = { x: 50, y: 280, direction: 1 };
-let treasureBox = { x: 450, y: 265, visible: true };
-let thief = { x: -100, y: 280, direction: 1, hasBox: false, arrived: false };
+let treasureBox = { x: 480, y: 265, visible: true };
+let thief = { x: 650, y: 280, direction: -1, hasBox: false, arrived: false };
 let hero = { x: 50, y: 280, direction: 1 };
 let explosionParticles = [];
 let explosionFrame = 0;
@@ -208,7 +208,7 @@ function startChannel2() {
     // Reset states
     moviePerson.x = 50;
     treasureBox.visible = true;
-    thief.x = -100;
+    thief.x = 650;
     thief.hasBox = false;
     thief.arrived = false;
     animateChannel2();
@@ -280,38 +280,40 @@ function drawTreasureBox() {
     const x = treasureBox.x;
     const y = treasureBox.y;
 
-    // Box body
-    ctx.fillStyle = '#1a1a1a';
+    // Box body (golden yellow)
+    ctx.fillStyle = '#d4af37';
     ctx.fillRect(x - 20, y - 15, 40, 30);
 
-    // Box lid
+    // Box lid (slightly darker gold)
+    ctx.fillStyle = '#b8962a';
     ctx.fillRect(x - 22, y - 20, 44, 8);
 
-    // Lock detail
-    ctx.fillStyle = '#3a3a3a';
+    // Lock detail (dark for contrast)
+    ctx.fillStyle = '#5a4a1a';
     ctx.fillRect(x - 5, y - 5, 10, 10);
 
-    // Shine effect (optional sparkle)
+    // Shine effect (bright yellow sparkle)
     if (Math.random() > 0.8) {
-        ctx.fillStyle = '#5a5a5a';
+        ctx.fillStyle = '#ffeb3b';
         ctx.fillRect(x + 10, y - 12, 3, 3);
+        ctx.fillRect(x - 12, y - 10, 2, 2);
     }
 }
 
 function updateThief() {
     if (!thief.arrived) {
-        // Walk towards treasure
-        thief.x += 2;
+        // Walk towards treasure (from right to left)
+        thief.x -= 2;
 
         // When reaching treasure
-        if (thief.x >= treasureBox.x - 30) {
+        if (thief.x <= treasureBox.x + 30) {
             thief.arrived = true;
             treasureBox.visible = false;
             thief.hasBox = true;
         }
     } else {
-        // Run away with treasure
-        thief.x += 3;
+        // Run away with treasure (continue left)
+        thief.x -= 3;
     }
 }
 
@@ -339,10 +341,10 @@ function drawThief() {
         ctx.fillRect(x - 20, y - 25, 10, 20);
         ctx.fillRect(x + 10, y - 25, 10, 20);
 
-        // Draw treasure box in hands
-        ctx.fillStyle = '#1a1a1a';
+        // Draw treasure box in hands (golden yellow)
+        ctx.fillStyle = '#d4af37';
         ctx.fillRect(x - 15, y - 30, 30, 20);
-        ctx.fillStyle = '#3a3a3a';
+        ctx.fillStyle = '#5a4a1a';
         ctx.fillRect(x - 3, y - 22, 6, 6);
     } else {
         // Normal arms
